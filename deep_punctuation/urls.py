@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from deep_punc.views import home, submit_plain_text
+from deep_punc.views import home, submit_plain_text, processing_text
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('results/', submit_plain_text, name='results')
+    path('results/', submit_plain_text, name='results'),
+    path('processing/<str:id>/', processing_text, name='processing')
 ]
