@@ -124,4 +124,4 @@ try:
 except:
     REDIS_HOST = "127.0.0.1"
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'redis://localhost:6379'

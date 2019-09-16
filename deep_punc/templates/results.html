@@ -1,48 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Results</title>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="container">
-        {% if original_text %}
-        <h3>{{ original_text }}</h3>
-        {% endif %}
-    </div>
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Results</h1>
+    <br>
+    {% if original_text %}
+        <div class="input-group">
+            <textarea readonly class="form-control" rows="5" name="paragraph">{{ original_text }}</textarea>
+        </div>
+    {% endif %}
 
     <div class="result">
 
     </div>
-</body>
-<script>
 
-    $( document ).ready(function() {
+    <script>
 
-        interval = setInterval(worker, 5000);
+        $(document).ready(function () {
+
+            interval = setInterval(worker, 5000);
             function worker() {
-              $.ajax({
-                  method: 'GET',
-                url: '{% url "processing" paragraph_id %}',
-                success: function(data) {
-                    console.log(data);
-                    if (data.response){
-                        $('.result').html(data.response);
-                        clearInterval(interval);
-                    }else{
-                        $('.result').html("Processing ...");
-                    }
-                },
-                complete: function() {
-                  // Schedule the next request when the current one's complete
+                $.ajax({
+                    method: 'GET',
+                    url: '{% url "processing" paragraph_id %}',
+                    success: function (data) {
+                        console.log(data);
+                        if (data.response) {
+                            $('.result').html(data.response);
+                            clearInterval(interval);
+                        } else {
+                            $('.result').html("Processing ...");
+                        }
+                    },
+                    complete: function () {
+                        // Schedule the next request when the current one's complete
 
-                }
-              });
-        }
-    });
-</script>
-</html>
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

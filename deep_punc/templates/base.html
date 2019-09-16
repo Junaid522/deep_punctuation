@@ -3,23 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 <div class="container">
-    <form action="{% url 'results' %}" method='post' enctype="multipart/form-data">
-        {% csrf_token %}
+    {% block content %}
+        <form action="{% url 'results' %}" method='post' enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <div class="input-group">
-            <label class="col-form-label" for="inputGroupSelect01">Enter your simple paragraph (without punctuation): </label>
-        </div>
-        <div class="input-group">
-            <input type="text" name="paragraph"/>
-        </div>
-        <br>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
+            <div class="input-group">
+                <label class="col-form-label" for="inputGroupSelect01">Enter your simple paragraph (without
+                    punctuation): </label>
+            </div>
+            <div class="input-group">
+                <textarea class="form-control" rows="5" name="paragraph"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    {% endblock %}
+
 </div>
 
 </body>
