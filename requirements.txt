@@ -1,7 +1,7 @@
 deepcorrect==1.0.5
 deepsegment==2.0.2
 Django==2.2.5
-tensorflow==1.14.0
+tensorflow==2.5.3
 tensorflow-estimator==1.14.0
 celery
 redis
